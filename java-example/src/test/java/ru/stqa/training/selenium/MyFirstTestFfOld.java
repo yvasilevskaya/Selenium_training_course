@@ -1,29 +1,31 @@
 package ru.stqa.training.selenium;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
-
 /**
- * Created by Yulia on 7/10/2017.
+ * Created by Yulia on 7/12/2017.
  */
-
-public class MyFirstTest{
+public class MyFirstTestFfOld {
   private WebDriver driver;
   private WebDriverWait wait;
 
   @Before
   public void start(){
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("start-fullscreen");
-    driver = new ChromeDriver(options);
-    //driver = new ChromeDriver();
+    DesiredCapabilities caps = new DesiredCapabilities();
+    caps.setCapability(FirefoxDriver.MARIONETTE, false);
+    driver = new FirefoxDriver();
+    System.out.println(((HasCapabilities) driver).getCapabilities());
     wait = new WebDriverWait(driver,10);
   }
 
@@ -41,3 +43,4 @@ public class MyFirstTest{
     driver = null;
   }
 }
+
